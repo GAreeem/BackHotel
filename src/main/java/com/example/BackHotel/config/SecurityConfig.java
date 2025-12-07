@@ -34,6 +34,7 @@ public class SecurityConfig {
                         // TODO: puedes abrir endpoints según necesites (ej. para pruebas)
                         .requestMatchers("/api/usuarios/**").hasRole("RECEPCION")
                         .requestMatchers("/api/habitaciones/**").authenticated()
+                        .requestMatchers("/api/limpiezas/historial").hasRole("RECEPCION")
                         .requestMatchers("/api/limpiezas/**").hasRole("LIMPIEZA")
                         .requestMatchers("/api/incidencias/**").authenticated()
                         .anyRequest().authenticated()

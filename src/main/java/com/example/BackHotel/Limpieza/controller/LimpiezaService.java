@@ -59,5 +59,10 @@ public class LimpiezaService {
     public List<Limpieza> historialPorCamarera(Long camareraId) {
         return limpiezaRepository.findByCamareraId(camareraId);
     }
+    public List<Limpieza> listarUltimos(int limite) {
+        // De
+        // "limite" más adelante, se cambia a Pageable.
+        return limpiezaRepository.findTop50ByOrderByFechaHoraDesc();
+    }
 }
 

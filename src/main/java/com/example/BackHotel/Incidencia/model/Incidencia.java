@@ -29,7 +29,7 @@ public class Incidencia {
 
     @ElementCollection
     @CollectionTable(name = "incidencia_fotos", joinColumns = @JoinColumn(name = "incidencia_id"))
-    @Column(name = "foto_url")
+    @Column(name = "foto_url", columnDefinition = "LONGTEXT")
     private List<String> fotos = new ArrayList<>();
 
     private boolean abierta = true;

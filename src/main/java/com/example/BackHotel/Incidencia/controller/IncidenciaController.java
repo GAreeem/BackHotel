@@ -47,12 +47,20 @@ public class IncidenciaController {
         return incidenciaService.listarAbiertas();
     }
 
+    public static class CerrarIncidenciaRequest {
+        public Long recepcionId;
+        public EstadoHabitacion nuevoEstado;
+    }
+
     @PutMapping("/{id}/cerrar")
-    public ResponseEntity<Incidencia> cerrar(@PathVariable Long id,
-                                             @RequestParam Long recepcionId,
-                                             @RequestParam(required = false) EstadoHabitacion nuevoEstado) {
-        return incidenciaService.cerrar(id, recepcionId, nuevoEstado)
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    public ResponseEntity<Incidencia> cerrar(
+            @PathVariable Long id,
+            @RequestBody CerrarIncidenciaRequest req) {
+
+        return incidenciaService.cerrar(id, req.recepcionId, req.nuevoEstado)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.badRequest().build());
     }
+
 }

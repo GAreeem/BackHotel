@@ -22,6 +22,11 @@ public class LimpiezaController {
         public Long camareraId;
     }
 
+    @GetMapping("/historial")
+    public List<Limpieza> historial(@RequestParam(defaultValue = "50") int limit) {
+        return limpiezaService.listarUltimos(limit);
+    }
+
     @PostMapping("/marcar-limpia")
     public ResponseEntity<Limpieza> marcarLimpia(@RequestBody LimpiezaRequest req) {
         return limpiezaService.marcarLimpia(req.habitacionId, req.camareraId)
